@@ -1,0 +1,8 @@
+<mat-toolbar>
+  <button mat-button [routerLink]="['']">
+    <h1>Golf</h1>
+  </button>
+  <span fxFlex="auto"></span>
+  <button mat-button [routerLink]="['/courses']">Courses</button>
+  <button *ngIf="isCourseSelected" mat-button [routerLink]="['/scorecard']">Scorecard</button>
+</mat-toolbar>

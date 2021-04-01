@@ -1,0 +1,24 @@
+<div *ngIf="course$ | async as course">
+  <mat-card>
+    {{ course.data.name }}
+  </mat-card>
+
+  <!-- <mat-card> -->
+    <table>
+      <tr>
+        <th>Hole</th>
+        <th>Par</th>
+        <th>Yardage</th>
+        <th>Player 1</th>
+        <th>Player 1</th>
+      </tr>
+      <tr *ngFor="let hole of course.data.holes">
+        <td class="side-border">{{ hole.hole }}</td>
+        <td class="side-border">1</td>
+        <td class="side-border">1</td>
+        <td><input type="number"></td>
+        <td><input type="number"></td>
+      </tr>
+    </table>
+  <!-- </mat-card> -->
+</div>
