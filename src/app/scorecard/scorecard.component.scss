@@ -1,10 +1,43 @@
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}
+
 tr, td {
   border: 1px solid black;
   border-collapse: collapse;
+  background-color: lightgray;
+}
+
+span {
+  border-right: solid 1px black;
+  border-left: solid 1px black;
+  padding: 0 1px;
 }
 
 .side-border {
   border-top: 0px;
   border-bottom: 0px;
   text-align: center;
+}
+
+.player-score {
+  width: 2em;
+}
+
+.par {
+  margin-left: 2px;
+}
+
+.score-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 1em;
+  border: 1px solid black;
 }

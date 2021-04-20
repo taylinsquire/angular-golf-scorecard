@@ -1,24 +1,49 @@
 <div *ngIf="course$ | async as course">
   <mat-card>
     {{ course.data.name }}
+    <button (click)="onDebug()" *ngIf="true">Show JSON</button>
   </mat-card>
 
-  <!-- <mat-card> -->
+  <mat-card>
     <table>
       <tr>
         <th>Hole</th>
-        <th>Par</th>
-        <th>Yardage</th>
-        <th>Player 1</th>
-        <th>Player 1</th>
+        <th *ngFor="let player of players">{{ player.name }}</th>
       </tr>
-      <tr *ngFor="let hole of course.data.holes">
+      <tr>
+        <td></td>
+        <td *ngFor="let player of players">Par | Yardage | Score</td>
+      </tr>
+      <tr *ngFor="let hole of course.data.holes; let holeIndex = index">
         <td class="side-border">{{ hole.hole }}</td>
-        <td class="side-border">1</td>
-        <td class="side-border">1</td>
-        <td><input type="number"></td>
-        <td><input type="number"></td>
+        <td *ngFor="let player of players">
+          <div class="score-box">
+            <span class="par">{{ hole.teeBoxes[player.teeBox].par }}</span>
+            <span>{{ hole.teeBoxes[player.teeBox].yards }}</span>
+            <input
+              class="player-score"
+              type="number"
+              [(ngModel)]="player.holes[holeIndex].score"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="players">
+        <td>Total</td>
+        <td *ngFor="let player of players">
+          <div class="score-box">
+            <span class="par">{{ course.data.holes | par:player.teeBox }}</span>
+            <span>{{ course.data.holes | yardage:player.teeBox }}</span>
+            <span>{{ playerService.getTotalScore(player.name) }}</span>
+          </div>
+        </td>
       </tr>
     </table>
-  <!-- </mat-card> -->
+  </mat-card>
+
+  <div *ngIf="debug">
+    <div *ngFor="let hole of course.data.holes">
+      {{ hole | json }}
+    </div>
+  </div>
 </div>

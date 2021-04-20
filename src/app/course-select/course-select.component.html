@@ -1,6 +1,17 @@
 <ul *ngIf="courses$ | async as courses">
   <li *ngFor="let course of courses.courses">
-    <img fxFlex="250px" src="{{ course.image }}" alt="">
-    <button mat-button-primary (click)="setCourse(course.id)">Select {{ course.name }}</button>
+    <mat-card>
+      <h1>{{ course.name }}</h1>
+      <img src="{{ course.image }}" alt="" />
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="setCourse(course.id)"
+        >
+          Select {{ course.name }}
+        </button>
+      </div>
+    </mat-card>
   </li>
 </ul>

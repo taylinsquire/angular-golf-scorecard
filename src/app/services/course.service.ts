@@ -48,4 +48,9 @@ export class CourseService {
   get isCourseSelected(): Boolean {
     return this.selectedCourseId !== undefined;
   }
+
+  getTotalPar(index: number): number {
+    let par = 0;
+    return 0;
+  }
 }

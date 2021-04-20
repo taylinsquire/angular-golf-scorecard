@@ -21,7 +21,7 @@ export class CourseSelectComponent implements OnInit {
 
   setCourse(id: Number): void {
     this.courseService.setCourseId(id).then(() => {
-      this.router.navigate(['/scorecard']);
+      this.router.navigate(['/player-select']);
     });
   }
 }

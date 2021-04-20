@@ -1,0 +1,45 @@
+<div *ngIf="course$ | async as course">
+  <mat-card *ngFor="let player of players; let i = index">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="player.name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>TeeBox</mat-label>
+      <mat-select [(ngModel)]="player.teeBox">
+        <mat-option
+          *ngFor="
+            let teeBox of course.data.holes[0].teeBoxes;
+            let teeBoxIndex = index
+          "
+          value="{{ teeBoxIndex }}"
+          >{{ teeBox.teeType }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <button
+      mat-mini-fab
+      color="primary"
+      aria-label="remove player"
+      (click)="removePlayer(i)"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card>
+
+  <mat-card>
+    <button
+      *ngIf="!maxPlayers"
+      mat-mini-fab
+      color="primary"
+      (click)="addPlayer()"
+    >
+      <!-- Add Player -->
+      <mat-icon>add</mat-icon>
+    </button>
+    <button *ngIf="!formsEmpty" mat-raised-button (click)="submitPlayers()">
+      Submit
+    </button>
+    <div>{{ playerAmount }}</div>
+  </mat-card>
+</div>
